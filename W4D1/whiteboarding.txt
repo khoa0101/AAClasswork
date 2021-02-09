@@ -1,0 +1,68 @@
+# For both of these problems, assume there is a Node class. The node class will take in a value as part of its initialization. You will monkeypatching the following methods:
+# 1. Write a method `bfs` that does a breadth-first search starting at a root node. It takes in a target, and a proc as an argument.
+# 2. Write a method `dfs` that does a depth-first search starting at a root node. It takes in a target, and a proc as an argument.
+# Example usage:
+# n1 = Node.new(1) # making a node with a value of 1
+# n1.bfs(1) #=> n1
+# n1.dfs { |node| node.value == 1 } #=> n1 (found a node with value == 1)
+class Node
+  # -- Assume nodes have a value, and a attr_reader on value
+  # -- Also, assume there are working parent/child-related methods for Node
+end
+
+
+there is already a tree with all the node class: (value, parent, child)
+
+queue array starting with the root node
+
+take that first node out of the queue and check if it is the target or if it satisfy the proc condition
+    if it is the target then the problem is solved, return that node
+    if not, then iterate through the childrens and shovel into the queue
+
+    and repeat the earlier process of taking the first node out and checking if it's the target
+    constant cycle until there's no more nodes in the queue meaning we went through all the nodes in the tree
+
+
+inside the node class
+
+def bfs(target, prc)
+    queue = [self]
+    until queue.empty?
+        ele = queue.shift
+        if !target.nil?
+            return ele if ele.value == target
+        elsif !prc.nil?
+            return ele if prc.call(ele)
+        end
+        ele.childrens.each { |child| queue << child }
+    end
+    nil
+end
+
+# test case: tree 
+# a = [b, c]
+#   b = [d, e]
+#   c = [f, g]
+
+use recursion
+check the root node if it satisfy the target or the proc
+if it does not satisfy the condition
+call the method again on it's childrens if it does have childrens
+otherwise return nil
+
+inside the node class 
+
+def dfs(target = nil, prc = nil) #c target = f
+    if !target.nil?
+        return self if self.value = target
+    elseif !prc.nil?
+        return self if prc.call(self)
+    end
+
+    self.children do |child| #nil
+        result = child.dfs(target, prc)
+        return result if result != nil
+    end
+    # yea it looks good!
+    return nil
+end
