@@ -1,7 +1,7 @@
 require_relative "piece.rb"
 
 class Board
-  attr_reader :board
+  attr_reader :grid
 
   @@INITIATIAL_POS = {
     "rook" => [[0, 0], [0, 7], [7, 7], [7, 7]],
@@ -25,18 +25,26 @@ class Board
     Array.new(8) { Array.new(8) }
   end
 
+  def [](pos)
+    grid[pos[0]][pos[1]]
+  end
+
+  def []=(pos, val)
+    grid[pos[0]][pos[1]] = val
+  end
+
   def initialize
-    @board = Board.build_board
+    @grid = Board.build_board
 
     (0...8).each do |row|
       (0...8).each do |col|
         pos = [row, col]
         @@INITIATIAL_POS.each do |k, v|
           if v.include?(pos)
-            board[row][col] = (row < 2 ? Piece.new(:W, k, pos) : Piece.new(:B, k, pos))
+            grid[row][col] = (row < 2 ? Piece.new(:W, k, pos) : Piece.new(:B, k, pos))
             break
           else
-            board[row][col] = Piece.new(nil, nil, pos)
+            grid[row][col] = Piece.new(nil, nil, pos)
           end
         end
       end
@@ -45,7 +53,7 @@ class Board
   end
 
   def print
-    @board.each do |row|
+    grid.each do |row|
       row_pieces = []
       row.each do |piece|
         row_pieces << piece
@@ -55,19 +63,20 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    row1, col1 = start_pos
-    row2, col2 = end_pos
-    if board[row1][col1].name.nil? 
+    start_pos = self[start_pos]
+    end_pos = self[end_pos]
+    if start_pos.name.nil? 
       raise ArgumentError.new("there is no piece at the starting position")
     end
-    if !board[row2][col2].name.nil? && board[row1][col1].color == board[row2][col2].color
-      raise ArgumentError.new("occupied position at ending postion")
-    end
-    if board[row2][col2].nil?
-      board[row1][col1], board[row2][col2] = board[row2][col2], board[row1][col1]
+    if end_pos.nil?
+      start_pos, end_pos = end_pos, start_pos
     else
-      board[row2][col2] = board[row1][col1]
-      board[row1][col1] = Piece.new(nil, nil, start_pos)
+      if start_pos.color == end_pos.color
+        raise ArgumentError.new("occupied position at ending postion")
+      else
+        end_pos = start_pos
+        start_pos = Piece.new(nil, nil, start_pos)
+      end
     end
   end
 
@@ -79,10 +88,10 @@ p "-" * 60
 board.move_piece([0,0], [5,0])
 board.print
 p "-" * 60
-# board.move_piece([4,1], [4,2])
-# board.print
-# board.move_piece([7,5], [7,4])
-# board.print
-# p "-" * 60
+board.move_piece([4,1], [4,2])
+board.print
+board.move_piece([7,5], [7,4])
+board.print
+p "-" * 60
 board.move_piece([6,2], [1,2])
 board.print
