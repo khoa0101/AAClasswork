@@ -18,7 +18,7 @@ end
 # p phase_1_anagram?("gizmo", "sally")    #=> false
 # p phase_1_anagram?("elvis", "lives")    #=> true
 
-def phase_2_anagram?(str1, str2) # quadratic
+def phase_2_anagram?(str1, str2) # quadratic (also could be n * m if str lengths are different)
   str1 = str1.split('')
   str2 = str2.split('')
   
@@ -36,7 +36,7 @@ end
 # p phase_2_anagram?("gizmo", "sally")    #=> false
 # p phase_2_anagram?("elvis", "lives")    #=> true
 
-def phase_3_anagram?(str1, str2)
+def phase_3_anagram?(str1, str2) # log linear
   str1 = str1.split('')
   str2 = str2.split('')
 
