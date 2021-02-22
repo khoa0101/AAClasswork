@@ -12,7 +12,7 @@ end
 def golden_age
   # Find the decade with the highest average movie score.
   Movie
-  
+    
 
 end
 
