@@ -131,3 +131,10 @@ Processing by UsersController#index as */*
 Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/users" for ::1 at 2021-02-24 15:09:22 -0800
+Processing by UsersController#index as HTML
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
