@@ -732,3 +732,126 @@ Migrating to CreateUsers (20210225001740)
   [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jack@email.com"], ["LIMIT", 1]]
   [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jack"], ["email", "jack@email.com"], ["created_at", "2021-02-25 00:49:17.393017"], ["updated_at", "2021-02-25 00:49:17.393017"]]
   [1m[35m (15.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users?id=1" for ::1 at 2021-02-24 17:19:41 -0800
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/khoa/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+  
+ArgumentError (Before process_action callback :verify_authenticity_token has not been defined):
+  
+app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/users_controller.rb:1:in `<top (required)>'
+Started GET "/users?id=1" for ::1 at 2021-02-24 17:19:56 -0800
+Processing by UsersController#index as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4
+Completed 200 OK in 14ms (Views: 6.4ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/users/1" for ::1 at 2021-02-24 17:20:12 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8
+Completed 200 OK in 14ms (Views: 1.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users?id=1" for ::1 at 2021-02-24 17:20:32 -0800
+Processing by UsersController#index as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for ::1 at 2021-02-24 17:20:45 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/1" for ::1 at 2021-02-24 17:22:14 -0800
+Processing by UsersController#update as */*
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1..2)):
+  
+app/controllers/users_controller.rb:26:in `update'
+Started PATCH "/users/1" for ::1 at 2021-02-24 17:22:43 -0800
+Processing by UsersController#update as */*
+  Parameters: {"id"=>"1"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:26:in `update'
+Started PATCH "/users/3?users[name]=Jessica&users[email]" for ::1 at 2021-02-24 17:23:42 -0800
+Processing by UsersController#update as */*
+  Parameters: {"users"=>{"name"=>"Jessica", "email"=>nil}, "id"=>"3"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:26:in `update'
+Started PATCH "/users/3?users[name]=Jessica" for ::1 at 2021-02-24 17:23:55 -0800
+Processing by UsersController#update as */*
+  Parameters: {"users"=>{"name"=>"Jessica"}, "id"=>"3"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:26:in `update'
+Started PATCH "/users/3?users[name]=%22Jessica%22" for ::1 at 2021-02-24 17:24:17 -0800
+Processing by UsersController#update as */*
+  Parameters: {"users"=>{"name"=>"\"Jessica\""}, "id"=>"3"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:26:in `update'
+Started PATCH "/users/3?users[name]=%22Jessica%22&users[email]=%22sarah@email.com%22" for ::1 at 2021-02-24 17:24:28 -0800
+Processing by UsersController#update as */*
+  Parameters: {"users"=>{"name"=>"\"Jessica\"", "email"=>"\"sarah@email.com\""}, "id"=>"3"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:26:in `update'
+Started PATCH "/users/3?users[name]=%22Jessica%22&users[email]=%22sarah@email.com%22" for ::1 at 2021-02-24 17:24:44 -0800
+Processing by UsersController#update as */*
+  Parameters: {"users"=>{"name"=>"\"Jessica\"", "email"=>"\"sarah@email.com\""}, "id"=>"3"}
+Completed 400 Bad Request in 31006ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:27:in `update'
+Started PATCH "/users/3?users[name]=%22Jessica%22&users[email]=%22sarah@email.com%22" for ::1 at 2021-02-24 17:25:49 -0800
+Processing by UsersController#update as */*
+  Parameters: {"users"=>{"name"=>"\"Jessica\"", "email"=>"\"sarah@email.com\""}, "id"=>"3"}
+Completed 500 Internal Server Error in 138246ms (ActiveRecord: 0.0ms)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `update'
+app/controllers/users_controller.rb:27:in `update'

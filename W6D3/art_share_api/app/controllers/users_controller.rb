@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: params
+    user = User.find_by(id: params[:id])
+
+    render json: user
   end
 
   def create
@@ -20,5 +22,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find(params[:id])
+    if user.update_attributes(user_params)
+      render json: user
+    else
+      render json: user.errors, status: :unprocessable_entity
+    end
+  end
 
 end
