@@ -3,7 +3,11 @@ require "date"
 
 class Cat < ApplicationRecord
 
+  COLOR = ["smoke", "white", "blue", "red tabby", "silver tabby"] #, 
+    #"brown tabby", "red point", "silver shaded", "linx point", "other"]
+
   include ActionView::Helpers::DateHelper
+  validates :color, inclusion: COLOR 
 
   validate :invalid_sex
 
