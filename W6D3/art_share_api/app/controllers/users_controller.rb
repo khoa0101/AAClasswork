@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if user.update_attributes(user_params)
       render json: user
     else
-      render json: user.errors, status: :unprocessable_entity
+      render json: user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -36,8 +36,6 @@ class UsersController < ApplicationController
     if user
       user.destroy
       render json: user
-    else
-      render json: user.errors, status: :unprocessable_entity
     end
   end
 
