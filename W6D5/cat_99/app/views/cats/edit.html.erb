@@ -6,8 +6,8 @@
   </label>
   
   <label>Sex: <br> 
-    <label for="male">Male 
-      <input type="radio" id="male" name="cat[sex]" value="M">
+    <label for="male">Male
+      <input type="radio" id="male" name="cat[sex]" value="M" <%checked="checked" if cat.sex = "M" %>>
     </label>
     <label for="female">Female 
       <input type="radio" id="female" name="cat[sex]" value="F">
@@ -25,7 +25,7 @@
   </select>
 
   <label for="birthday">Birthday: </label>
-  <input type="date" id="birthday" name="cat[birth_date]" value>
+  <input type="date" id="birthday" name="cat[birth_date]" value="<%= cat.birth_date %>">
 
   <label for="description">Description: </label>
   <textarea name="cat[description]"></textarea>

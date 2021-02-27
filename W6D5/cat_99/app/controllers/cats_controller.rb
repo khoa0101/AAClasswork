@@ -1,8 +1,8 @@
-class CatsController < ApplicationRecord
+class CatsController < ApplicationController
   def index
-    cats = Cat.all
+    @cats = Cat.all
 
-    render json: cats
+    render :index
   end
 
   def show
@@ -11,5 +11,18 @@ class CatsController < ApplicationRecord
     render json: cats
   end
 
-  
+  def new
+    @current_cat = Cat.new
+
+    render :new
+  end
+
+  def edit
+
+  end
+
+  private
+  def cat_params
+    params.require(:cat).permit(:birth_date, :color, :name, :sex, :description)
+  end
 end
