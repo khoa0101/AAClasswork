@@ -12,24 +12,25 @@ class User < ApplicationRecord
 
     user && user.is_password?(password) ? user : nil
   end
+
   def self.generate_session_token
     token = SecureRandom.urlsafe_base64(16)
 
-    while self.class.exists?(session_token: token)
-      token = SecureRandom.urlsafe_base64(16)
-    end
+    # while self.class.exists?(session_token: token)
+    #   token = SecureRandom.urlsafe_base64(16)
+    # end
 
     token
   end
 
   def reset_session_token!
-    self.session_token = generate_session_token
+    self.session_token = User.generate_session_token
     self.save!
     self.session_token
   end
 
   def ensure_session_token
-    self.session_token ||= generate_session_token
+    self.session_token ||= User.generate_session_token
   end
 
   def password=(password)
