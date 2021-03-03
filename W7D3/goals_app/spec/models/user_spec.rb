@@ -19,5 +19,23 @@ RSpec.describe User, type: :model do
 
   end
 
+  #associations
+  #a user has many goals
+  #have many comments on others goals
+
+  #class_scope methods
+    #find_by_credential
+    #password?
+    #is_password? or password?
+    #reset_session_token
+  describe 'class_scope methods' do
+
+    context find_by_credential
+      #should return the user based on username and password
+
+  end
+
+
+
 end
 
