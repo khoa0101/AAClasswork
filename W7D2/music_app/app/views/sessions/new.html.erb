@@ -1,8 +1,8 @@
-<h1 class='page-header'>New User</h1>
+<h2 class='page-header'>Sign-in</h2>
 
-<a class='button' href=<%= new_session_url %> >Go to sign-in</a>
+<a class='button' href=<%= new_user_url %> >Go to Sign-up!</a>
 
-<form class='form' action="<%= users_url %>" method="post">
+<form class='form' action="<%= session_url %>" method="post">
   <input
     type="hidden"
     name="authenticity_token"
@@ -18,5 +18,5 @@
     <input id='new-user-password' type="password" name="user[password]">
   </p>
 
-  <input type="submit" value="Submit">
+  <input type="submit">
 </form>
