@@ -12,7 +12,7 @@
 	left: calc(50% - (177.78px/2));
 	background: white;
 	border: 1px solid $light-gray;
-	border-bottom: none;
+	border-bottom-color: white;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 
@@ -29,6 +29,7 @@
 	}
 
 	li:first-of-type {
+		
 		a {
 			font-weight: bold;
 		}
@@ -77,8 +78,12 @@
 	strong {
 		color: green;
 	}
-	
+
 	li:last-child {
 		border: none;
 	}
+}
+
+a:hover{
+	text-decoration: underline ;
 }
