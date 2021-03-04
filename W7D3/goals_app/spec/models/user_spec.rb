@@ -28,10 +28,15 @@ RSpec.describe User, type: :model do
     #password?
     #is_password? or password?
     #reset_session_token
-  describe 'class_scope methods' do
+  describe 'password encryption' do
 
-    context find_by_credential
-      #should return the user based on username and password
+    it "does not save password to the database" do
+      FactoryBot.create(:harry_potter)
+
+      user = User.find_by(username: 'Harry Potter')
+      expect(user.password).not_to eq('password')
+    end
+
 
   end
 
