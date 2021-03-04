@@ -34,6 +34,10 @@
 			font-weight: bold;
 		}
 	}
+
+	a:hover{
+		text-decoration: underline ;
+	}
 }
 
 .logo {
@@ -82,8 +86,9 @@
 	li:last-child {
 		border: none;
 	}
+
+	a:hover{
+		text-decoration: underline ;
+	}
 }
 
-a:hover{
-	text-decoration: underline ;
-}

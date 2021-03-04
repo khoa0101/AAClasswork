@@ -1,0 +1,25 @@
+.section-nav {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid $light-gray;
+
+  ul {
+    display: flex;
+    padding: 10px 0;
+  }
+
+  li {
+    margin: 0 10px;
+    font-family: $sans-serif;
+    cursor: pointer;
+  }
+
+  li:hover:not(#all) {
+    background-color: $light-gray;
+  }
+
+  #all:hover {
+    text-decoration: underline;
+  } 
+
+}
