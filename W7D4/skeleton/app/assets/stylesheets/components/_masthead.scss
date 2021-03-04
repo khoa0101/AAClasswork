@@ -27,6 +27,12 @@
 	ul {
 		display: flex;
 	}
+
+	li:first-of-type {
+		a {
+			font-weight: bold;
+		}
+	}
 }
 
 .logo {
@@ -70,5 +76,9 @@
 
 	strong {
 		color: green;
+	}
+	
+	li:last-child {
+		border: none;
 	}
 }
