@@ -17,6 +17,9 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of(:username)}
     it { should validate_uniqueness_of(:session_token)}
 
+    it { should have_many(:goals)}
+    it { should have_many(:comments)}
+
   end
 
   #associations
@@ -30,13 +33,21 @@ RSpec.describe User, type: :model do
     #reset_session_token
   describe 'password encryption' do
 
-    it "does not save password to the database" do
-      FactoryBot.create(:harry_potter)
+    let(:user) { FactoryBot.build(:user) }
 
-      user = User.find_by(username: 'Harry Potter')
-      expect(user.password).not_to eq('password')
+    # it "does not save password to the database" do
+    #   FactoryBot.create(:harry_potter)
+
+    #   user = User.find_by(username: 'Harry Potter')
+    #   expect(user.password).not_to eq('password')
+    # end
+
+    it 'should encrypt the password using BCrypt' do
+      expect(BCrypt::Password).to receive(:create).with("string")
+
+      FactoryBot.build(:user, password: 'string')
+
     end
-
 
   end
 
