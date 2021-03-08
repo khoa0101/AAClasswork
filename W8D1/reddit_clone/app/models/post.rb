@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  validates :titles, :sub_id, :author_id, presence: true
+  validates :title, :sub_id, :author_id, presence: true
 
   belongs_to :sub,
     foreign_key: :sub_id,

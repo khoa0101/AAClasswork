@@ -1,10 +1,11 @@
-<h1><a href="<%= post_url(@post) %>"><%= @post.title %></a> by <%= @post.author %></h1>
+<h1><a href="<%= post_url(@post) %>"><%= @post.title %></a> by <%= @post.author.username %></h1>
 
 <h2>Content:</h2>
   <p><%= @post.content %></p>
 
 <h2>Subs</h2>
   <ul>
-    <li><%= @post.sub.title %></li>
+    <li><a href="<%= sub_url(@post.sub) %>"><%= @post.sub.title %></li>
   </ul>
 
+<a href="<%=edit_post_url(@post)%>">Edit</a>

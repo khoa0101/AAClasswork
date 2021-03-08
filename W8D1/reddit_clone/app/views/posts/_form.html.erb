@@ -14,12 +14,16 @@
   </label>
   <label>Content
   <textarea name="post[content]"><%= post.content %></textarea>
+    <br>
   </label>
     <% Sub.all.each do |sub| %>
       <label>
         <input type="checkbox" name="post[sub_id]" value="<%= sub.id %>" <%= "checked" if post.sub_id == sub.id %>>
+        <%= sub.title %>
       </label>
       <br>
     <% end %>
   <button>Submit</button>
+  <input type="hidden" name="post[author_id]" value="<%= current_user.id %>">
 </form>
+

@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     if @post.author_id == current_user.id
       render :edit
     else
-      flash.now[:errors] = ["Only author can edit it!"]
+      flash[:errors] = ["Only author can edit it!"]
       redirect_to post_url(@post)
     end
   end
