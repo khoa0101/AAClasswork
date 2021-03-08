@@ -23,6 +23,8 @@
         </form>
         </li>
       </ul>
+    <% else %>
+      <a href="<%=new_session_url%>">Sign in!</a>
     <% end %>
 
     <% if flash[:errors] %>

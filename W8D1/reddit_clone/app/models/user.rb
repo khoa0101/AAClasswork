@@ -29,4 +29,8 @@ class User < ApplicationRecord
     self.session_token ||= SecureRandom.base64
   end
 
+  has_many :subs,
+    foreign_key: :moderator_id,
+    class_name: 'Sub'
+
 end
