@@ -1,9 +1,7 @@
 <ul>
-    <% @all_comments.each do |child_comment| %>
-      <% if child_comment.parent_comment_id == parent_comment.id %>
+    <% @all_comments[parent_comment.id].each do |child_comment| %>
         <li><%= child_comment.author.username %> <%= child_comment.created_at %>
         <a href="<%=comment_url(child_comment)%>"><><%= child_comment.content %></a></li>
         <%= render "comments/comment", parent_comment: child_comment %>
-      <% end %>
     <% end %>
 </ul>
