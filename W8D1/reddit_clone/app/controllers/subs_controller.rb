@@ -53,7 +53,5 @@ class SubsController < ApplicationController
     self.params.require(:sub).permit(:title, :description, :moderator_id)
   end
 
-  
-
 
 end
