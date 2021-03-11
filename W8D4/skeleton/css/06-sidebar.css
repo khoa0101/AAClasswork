@@ -1,6 +1,6 @@
 /* PHASE 0: Sidebar */
 .profile-picture {
-  display: block;
+  display: flex;
   margin-top: -120px;
   border: 1px solid #000;
   background: #000;
