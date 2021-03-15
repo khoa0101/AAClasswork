@@ -110,9 +110,33 @@ function curriedSum(n) {
   }
 }
 
-let sum = curriedSum(4);
-sum = sum(5);
-sum = sum(30);
-sum = sum(20);
-sum = sum(1);
-console.log(sum)
+// let sum = curriedSum(4);
+// sum(5)(30)(20)(1);
+// console.log(sum);
+
+Function.prototype.curry = function(numArgs, context) {
+  let that = this;
+  let args1 = [];
+
+  return _curriedFunction = function(...args) {
+    args1 = args1.concat(args);
+    console.log(args1);
+    if (args1.length === numArgs) {
+      return that.apply(context, args1);
+    }
+    else {
+      return _curriedFunction;
+    }
+  }
+}
+
+function sumThree(num1, num2, num3)
+{
+  return num1 + num2 + num3;
+}
+
+let f1 = sumThree.curry(3);
+f1 = f1(4); // [Function]
+f1 = f1(20); // [Function]
+f1 = f1(6); // = 30
+console.log(f1);
