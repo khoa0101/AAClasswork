@@ -1,11 +1,77 @@
+html, body, figure, figcaption, ul, li, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-align: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 60px;
+  margin: 30px;
+}
+
 .grid-ul {
   display: flex;
   flex-wrap: wrap;
   width: 300px;
+  margin: 30px auto;
+  border: 5px solid black;
 }
 
 .square {
-  width: 100px;
+  width: 94px;
+  height: 94px;
   border: solid 3px black;
   background-color: gray;
+  float: left;
+  cursor: pointer;
+}
+
+.square:hover {
+  background-color: yellow;
+}
+
+.x, .o {
+  background-color: white;
+}
+
+.x:after, .o:after {
+  display: block;
+  width: 100%;
+  font-size: 60px;
+  line-height: 80px;
+}
+
+.x:after {
+  content: 'x';
+}
+.o:after {
+  content: 'o';
+}
+
+.game-over li {
+  color: red;
+  background-color: white;
+  cursor: default;
+}
+
+p {
+  color: black;
+  font-size: 30px;
+}
+
+li.won  {
+  background-color: teal;
+  color: white;
 }

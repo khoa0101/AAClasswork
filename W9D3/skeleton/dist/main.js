@@ -35,7 +35,7 @@ eval("const Board = __webpack_require__(/*! ./board */ \"./src/board.js\");\ncon
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\")// require appropriate file\nconst Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\")// require appropriate file\n\n  $(() => {\n    let el = $('.ttt');\n    const newGame = new Game();\n    const view = new View(newGame, el);\n  });\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\")// require appropriate file\nconst Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\")// require appropriate file\n\n  $(() => {\n    let el = $('.ttt');\n    const newGame = new Game();\n    const view = new View(newGame, el);\n    view.bindEvents();\n  });\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -55,7 +55,7 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.setupBoard($el);\n  }\n\n  bindEvents() {}\n\n  makeMove($square) {}\n\n  setupBoard($el) {\n    let grid = $('<ul class=\".grid-ul\"></ul>');\n    let square = $('<li class=\".square\"></li>');\n    $el.append(grid);\n    grid.append(square);\n  }\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    this.game = game;\n    this.$el = $el;\n    this.setupBoard();\n  }\n\n  bindEvents() {\n    const ul = $('.grid-ul');\n    ul.on('click', \"li\" , (e) => {\n      console.log(\"current target\", e.currentTarget);\n      console.log(\"target\", e.target);\n      const square = $(e.currentTarget);\n      this.makeMove(square);\n    });\n  };\n  \n  makeMove($square) {\n    const pos = $square.data('pos');\n    const mark = this.game.currentPlayer;\n    $square.addClass(mark);\n    try {\n      this.game.playMove(pos);\n    } catch(e) {\n      return alert('This ' + e.msg.toLowerCase());\n    };\n    if (this.game.board.isOver()) {\n      $('.square').click(function(){return false;});\n      $('.square').hover(function(){return false;});\n      this.$el.addClass('game-over');\n      if (this.game.winner()) {\n        const winner = this.game.winner();\n        const caption = $(`<p>You win, ${winner}!</p>`);\n        this.$el.append(caption);\n        $(`.${winner}`).addClass('won');\n      } else {\n        const caption = $(`<p>It's a tie...</p>`);\n        this.$el.append(caption);\n\n      };\n    };\n  };\n\n  setupBoard() {\n    let grid = $('<ul class=\"grid-ul\"></ul>');\n    this.$el.append(grid);\n    for(let i = 0; i < 3; i++) {\n      for(let j = 0; j < 3; j++) {\n      let square = $('<li class=\"square\"></li>');\n      square.data('pos', [i, j])\n      grid.append(square);\n      }\n    }\n  };\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 
