@@ -10,14 +10,14 @@ Function.prototype.inherits = function(parent_class)
 function MovingObject () {}
 MovingObject.prototype.moves = function()
 {
-  return "Moving..."
+  return "Moving...";
 }
 
 function Ship () {}
 Ship.inherits(MovingObject);
 Ship.prototype.fly = function()
 {
-  return "Fly!"
+  return "Fly!";
 }
 
 
@@ -25,7 +25,7 @@ function Asteroid () {}
 Asteroid.inherits(MovingObject);
 Asteroid.prototype.land = function()
 {
-  return "Oh no..."
+  return "Oh no...";
 }
 
 

@@ -18,12 +18,13 @@ class View {
   makeMove($square) {
     const pos = $square.data('pos');
     const mark = this.game.currentPlayer;
-    $square.addClass(mark);
     try {
       this.game.playMove(pos);
-    } catch(e) {
-      return alert('This ' + e.msg.toLowerCase());
-    };
+    } catch(e){
+      alert('This ' + e.msg.toLowerCase());
+      return; 
+    }
+    $square.addClass(mark);
     if (this.game.board.isOver()) {
       $('.square').click(function(){return false;});
       $('.square').hover(function(){return false;});

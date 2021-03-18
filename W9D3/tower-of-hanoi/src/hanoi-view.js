@@ -16,7 +16,6 @@ View.prototype.render = function(){
       if (this.game.towers[i][j])
       {
         const rod = $(`.rod${i + 1}`);
-        
         // .data("disNumber", this.game.towers[i][j]);
       }
       else 
