@@ -1,0 +1,7 @@
+.hasDisc:after { 
+  display: block;
+  width: 100%;
+  font-size: 60px;
+  line-height: 80px;
+}
+
