@@ -32,14 +32,19 @@ class Clock extends React.Component{
     return string;
   }
 
+  date() {
+    let string = this.state.date.toString().slice(0, 16);
+    return string;
+  }
+
   render(){
     console.log(this.state.date);
     return (
       <div>
         <h1>Clock</h1>
-          <ul>
-            <li>Time: {this.time()}</li>
-            <li>Date: </li>
+          <ul className="clock">
+            <li>Time: <p>{this.time()}</p></li>
+            <li>Date: <p>{this.date()}</p></li>
           </ul>
       </div>
     )
