@@ -67,7 +67,6 @@ FollowToggle.prototype.render = function() {
       this.$el.html("Follow!");
       break;
     default:
-
   };
 }
 
