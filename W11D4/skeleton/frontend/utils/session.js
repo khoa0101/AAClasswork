@@ -1,7 +1,7 @@
-import { $CombinedState } from "redux"
+// import { $CombinedState } from "redux"
 
 export const postUser = user => {
-  $.ajax({
+  return $.ajax({
     url: '/api/users',
     method: 'POST',
     data: { user },
@@ -9,7 +9,7 @@ export const postUser = user => {
 };
 
 export const postSession = user => {
-  $.ajax({
+  return $.ajax({
     url: '/api/session',
     method: 'POST',
     data: { user },
@@ -17,8 +17,8 @@ export const postSession = user => {
 };
 
 export const deleteSession = () => {
-  $.ajax({
-    url: '/ajax/session',
+  return $.ajax({
+    url: '/api/session',
     method: 'DELETE',
   })
 };

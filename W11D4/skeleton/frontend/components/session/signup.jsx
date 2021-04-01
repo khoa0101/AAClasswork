@@ -9,7 +9,7 @@ class Signup extends React.Component{
       password: '',
     }
 
-    this.handleSubmit = this.handleSubmit();
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInput(type){
@@ -21,7 +21,7 @@ class Signup extends React.Component{
   handleSubmit(e) {
     e.preventDefault();
     this.props.createNewUser(this.state)
-      .then(() => this.props.history.push('/chirps'));
+    .then(() => this.props.history.push('/chirps'));
   }
 
   render () {
@@ -33,24 +33,24 @@ class Signup extends React.Component{
             <input
               type='text'
               value={this.state.username}
-              onChanged={this.handleInput('username')}
+              onChange={this.handleInput('username')}
             />
           </label>
           <label>Email
             <input
               type='text'
               value={this.state.email}
-              onChanged={this.handleInput('email')}
+              onChange={this.handleInput('email')}
             />
           </label>
           <label>Password
             <input
               type='password'
               value={this.state.password}
-              onChanged={this.handleInput('password')}
+              onChange={this.handleInput('password')}
             />
           </label>
-          <button onChick={this.handleSubmit()}>Sign Up</button>
+          <button onClick={this.handleSubmit}>Sign Up</button>
         </form>
     </div>
     );
