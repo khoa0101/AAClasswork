@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
 import React from 'react';
 import { login } from '../../actions/session_actions';
-import errorsReducer from '../../reducers/errors_reducer';
 
 const mapStatetoProps = ({errors}) => {
   return {
